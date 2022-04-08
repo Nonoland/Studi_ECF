@@ -24,6 +24,10 @@ class RegisterController extends AbstractController
     #[Route('/inscription', name: 'app_register')]
     public function index(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
 
