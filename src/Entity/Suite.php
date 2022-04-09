@@ -28,11 +28,11 @@ class Suite
     #[ORM\ManyToOne(targetEntity: Hotel::class, inversedBy: 'suites')]
     private $hotel;
 
-    #[ORM\Column(type: 'json', nullable: true)]
-    private $images = [];
-
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
+
+    #[ORM\Embedded(class: 'Vich\UploaderBundle\Entity\File')]
+    private $highlightedImage;
 
     public function getId(): ?int
     {
@@ -95,18 +95,6 @@ class Suite
     public function setHotel(?Hotel $hotel): self
     {
         $this->hotel = $hotel;
-
-        return $this;
-    }
-
-    public function getImages(): ?array
-    {
-        return $this->images;
-    }
-
-    public function setImages(?array $images): self
-    {
-        $this->images = $images;
 
         return $this;
     }
