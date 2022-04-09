@@ -18,7 +18,7 @@ class HotelController extends AbstractController
         ]);
     }
 
-    #[Route('/hotel/{slug}', name: 'app_hotels')]
+    #[Route('/hotel/{slug}', name: 'app_hotel')]
     #[Entity('Hotel', expr: "repository.find(slug)")]
     public function renderHotel(Hotel $hotel): Response
     {

@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SuiteController extends AbstractController
 {
-    #[Route('/suite', name: 'app_suite')]
+    #[Route('/suites', name: 'app_suites')]
     public function index(): Response
     {
         return $this->render('suite/index.html.twig', [
@@ -18,7 +18,7 @@ class SuiteController extends AbstractController
         ]);
     }
 
-    #[Route('/suite/{slug}', name: 'app_suites')]
+    #[Route('/suite/{slug}', name: 'app_suite')]
     #[Entity('Suite', expr: "repository.find(slug)")]
     public function renderHotel(Suite $suite): Response
     {
