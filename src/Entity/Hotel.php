@@ -30,15 +30,19 @@ class Hotel
     #[ORM\Column(type: 'string', length: 255)]
     private $city;
 
-    #[ORM\Column(type: 'string', length: 1500, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'hotel')]
     private $users;
 
+    #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Suite::class)]
+    private $suites;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->suites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,6 +144,36 @@ class Hotel
     {
         if ($this->users->removeElement($user)) {
             $user->removeHotel($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Suite>
+     */
+    public function getSuites(): Collection
+    {
+        return $this->suites;
+    }
+
+    public function addSuite(Suite $suite): self
+    {
+        if (!$this->suites->contains($suite)) {
+            $this->suites[] = $suite;
+            $suite->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuite(Suite $suite): self
+    {
+        if ($this->suites->removeElement($suite)) {
+            // set the owning side to null (unless already changed)
+            if ($suite->getHotel() === $this) {
+                $suite->setHotel(null);
+            }
         }
 
         return $this;
