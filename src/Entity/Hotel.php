@@ -39,6 +39,9 @@ class Hotel
     #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Suite::class)]
     private $suites;
 
+    #[ORM\Column(type: 'json', nullable: true)]
+    private $images = [];
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -175,6 +178,18 @@ class Hotel
                 $suite->setHotel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImages(): ?array
+    {
+        return $this->images;
+    }
+
+    public function setImages(?array $images): self
+    {
+        $this->images = $images;
 
         return $this;
     }

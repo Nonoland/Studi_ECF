@@ -28,6 +28,9 @@ class Suite
     #[ORM\ManyToOne(targetEntity: Hotel::class, inversedBy: 'suites')]
     private $hotel;
 
+    #[ORM\Column(type: 'json', nullable: true)]
+    private $images = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Suite
     public function setHotel(?Hotel $hotel): self
     {
         $this->hotel = $hotel;
+
+        return $this;
+    }
+
+    public function getImages(): ?array
+    {
+        return $this->images;
+    }
+
+    public function setImages(?array $images): self
+    {
+        $this->images = $images;
 
         return $this;
     }
