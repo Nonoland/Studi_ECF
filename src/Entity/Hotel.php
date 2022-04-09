@@ -42,6 +42,9 @@ class Hotel
     #[ORM\Column(type: 'json', nullable: true)]
     private $images = [];
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $slug;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -190,6 +193,18 @@ class Hotel
     public function setImages(?array $images): self
     {
         $this->images = $images;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
