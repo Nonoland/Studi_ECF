@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Hotel;
+use App\Entity\Suite;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,5 +31,18 @@ class HotelController extends AbstractController
         return $this->render('hotel/render.html.twig', [
            'hotel' => $hotel
         ]);
+    }
+
+    #[Route('/hotel/reservation/{slug_hotel}/{slug_suite}', name: 'app_reservation')]
+    public function reservation(ManagerRegistry $doctrine, string $slug_hotel, string $slug_suite): Response
+    {
+        $hotel = $doctrine->getRepository(Hotel::class)->findOneBy(['slug' => $slug_hotel]);
+        $suite = $doctrine->getRepository(Suite::class)->findOneBy(['slug' => $slug_suite]);
+
+        if (!$hotel || !$suite) {
+            return $this->redirectToRoute('app_home');
+        }
+
+        return new Response();
     }
 }
