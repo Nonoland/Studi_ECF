@@ -21,7 +21,7 @@ class Hotel
     #[ORM\Column(type: 'string', length: 255)]
     private $address;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $complement;
 
     #[ORM\Column(type: 'string', length: 255)]

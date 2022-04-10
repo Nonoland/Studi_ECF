@@ -14,7 +14,7 @@ class HotelController extends AbstractController
     #[Route('/hotels', name: 'app_hotels')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $hotels = $doctrine->getRepository(Hotel::class)->getAllHotels();
+        $hotels = $doctrine->getRepository(Hotel::class)->findAll();
 
         return $this->render('hotel/index.html.twig', [
             'hotels' => $hotels,

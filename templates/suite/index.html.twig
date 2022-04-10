@@ -3,18 +3,13 @@
 {% block title %}Hello SuiteController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/nolandartois/PhpstormProjects/studi/src/Controller/SuiteController.php'|file_link(0) }}">src/Controller/SuiteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/nolandartois/PhpstormProjects/studi/templates/suite/index.html.twig'|file_link(0) }}">templates/suite/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1>Liste de nos suites</h1>
+    {% for suite in suites %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ suite.name }}</h5>
+                <p class="card-text">{{ suite.description | raw }}</p>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
