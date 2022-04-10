@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <div class="m-3">
+                            <h4>{{ user.firstname }} {{ user.lastname }}</h4>
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                                <p>Administrateur</p>
+                                <a href="{{ path('admin') }}" class="btn btn-danger">Administration</a>
+                            {% else %}
+                                <p>Client</p>
+                            {% endif %}
+                            <a href="{{ path('app_logout') }}" class="btn btn-primary">Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4"><div class="mb-0">Nom complet</div></div>
+                        <div class="col-sm-8 text-secondary">{{ user.firstname }} {{ user.lastname }}</div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4"><div class="mb-0">Email</div></div>
+                        <div class="col-sm-8 text-secondary">{{ user.email }}</div>
+                    </div>
+                    <hr>
+                    <div class="col-sm-12">
+                        <a href="#" class="btn btn-info">Modifier les informations</a>
+                        <a href="#" class="btn btn-primary mt-3">Modifier mon mot de passe</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4>Mes résevations</h4>
+                    <div class="row">
+                        {% if reservations|length == 0  %}
+                            <p>Vous n'avez pas de réservations pour le moment...</p>
+                        {% else %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

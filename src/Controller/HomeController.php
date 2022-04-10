@@ -19,6 +19,15 @@ class HomeController extends AbstractController
     #[Route('mon-compte', name: 'app_my_account')]
     public function my_account(): Response
     {
-        return new Response('test');
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $reservations = [];
+
+        return $this->render('user/index.html.twig', [
+            'user' => $this->getUser(),
+            'reservations' => $reservations
+        ]);
     }
 }
