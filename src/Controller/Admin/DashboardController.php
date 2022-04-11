@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Hotel;
+use App\Entity\Reservation;
 use App\Entity\Suite;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -35,11 +36,12 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
         yield MenuItem::section('Gestion client');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::section('Gestion Hôtellerie');
         yield MenuItem::linkToCrud('Hotels', 'fas fa-hotel', Hotel::class);
         yield MenuItem::linkToCrud('Suites', 'fas fa-bed', Suite::class);
+        yield MenuItem::linkToCrud('Réservations', 'fas fa-clock', Reservation::class);
     }
 }

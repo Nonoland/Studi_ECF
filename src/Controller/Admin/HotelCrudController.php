@@ -26,13 +26,13 @@ class HotelCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            TextEditorField::new('description'),
-            TextField::new('address'),
-            TextField::new('complement')->setRequired(false),
-            TextField::new('zipcode'),
-            TextField::new('city'),
-            AssociationField::new('users')->setQueryBuilder(
+            TextField::new('name', 'Nom'),
+            TextEditorField::new('description', 'Description'),
+            TextField::new('address', 'Adresse'),
+            TextField::new('complement', 'Complément')->setRequired(false),
+            TextField::new('zipcode', 'Code postal'),
+            TextField::new('city', 'Ville'),
+            AssociationField::new('users', 'Gérants')->setQueryBuilder(
                 fn (QueryBuilder $queryBuilder) => $queryBuilder->getEntityManager()->getRepository(User::class)->getAllUsers()
             )
         ];

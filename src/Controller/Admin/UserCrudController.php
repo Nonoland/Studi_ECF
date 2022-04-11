@@ -41,11 +41,11 @@ class UserCrudController extends AbstractCrudController
     {
         $roles = ['ROLE_ADMIN'];
         return [
-            TextField::new('email'),
-            TextField::new('password')->onlyWhenCreating(),
-            TextField::new('firstname'),
-            TextField::new('lastname'),
-            ChoiceField::new('roles')
+            TextField::new('email', 'Email'),
+            TextField::new('password', 'Mot de passe')->onlyWhenCreating(),
+            TextField::new('firstname', 'Prénom'),
+            TextField::new('lastname', 'Nom'),
+            ChoiceField::new('roles', 'Roles')
                 ->setChoices(array_combine($roles, $roles))
                 ->allowMultipleChoices()
                 ->renderExpanded()
