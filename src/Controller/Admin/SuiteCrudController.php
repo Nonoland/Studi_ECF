@@ -8,7 +8,11 @@ use Ausi\SlugGenerator\SlugGenerator;
 use Ausi\SlugGenerator\SlugOptions;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -23,7 +27,6 @@ class SuiteCrudController extends AbstractCrudController
         return Suite::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -31,8 +34,30 @@ class SuiteCrudController extends AbstractCrudController
             TextEditorField::new('description', 'Description'),
             NumberField::new('price', 'Prix'),
             TextField::new('booking_link', 'Lien vers Booking'),
-            AssociationField::new('hotel', 'Hotel'),
+            AssociationField::new('hotel', 'Hotel')->setQueryBuilder(
+                function (QueryBuilder $queryBuilder) {
+                    if (in_array('ROLE_ADMIN', $this->getUser()->getRoles()))
+                        return $queryBuilder;
+
+                    return $queryBuilder
+                        ->leftJoin('entity.users', 'users')
+                        ->andWhere('users.id = :user')
+                        ->setParameter('user', $this->getUser());
+                }
+            ),
         ];
+    }
+
+    public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
+    {
+        $response = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+        $response
+            ->leftJoin('entity.hotel', 'hotel')
+            ->leftJoin('hotel.users', 'users')
+            ->andWhere('users.id = :user')
+            ->setParameter('user', $this->getUser());
+
+        return $response;
     }
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
