@@ -150,4 +150,9 @@ class Suite
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->hotel->getName(). ' | ' .$this->getName();
+    }
 }
