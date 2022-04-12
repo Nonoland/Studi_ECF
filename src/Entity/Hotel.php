@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\HotelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
@@ -33,7 +34,7 @@ class Hotel
     #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'hotel')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'hotel', fetch: 'EAGER')]
     private $users;
 
     #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Suite::class)]
