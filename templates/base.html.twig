@@ -25,9 +25,9 @@
                         <li class="nav-item">
                             <a href="/hotels" class="nav-link">Hotels</a>
                         </li>
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a href="/suites" class="nav-link">Suites</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="collapse navbar-collapse justify-content-end">
@@ -48,9 +48,11 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container {% block body_name %}{% endblock %}">
             {% block body %}
             {% endblock %}
         </div>
+        {% block script_footer %}
+        {% endblock %}
     </body>
 </html>
