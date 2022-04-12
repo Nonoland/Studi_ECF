@@ -2,6 +2,8 @@
 
 {% block title %}Mon compte{% endblock %}
 
+{% block body_name %}account{% endblock %}
+
 {% block body %}
     <div class="row">
         <div class="col-md-4 mb-3">
@@ -10,9 +12,9 @@
                     <div class="d-flex flex-column align-items-center text-center">
                         <div class="m-3">
                             <h4>{{ user.firstname }} {{ user.lastname }}</h4>
-                            {% if 'ROLE_ADMIN' in user.roles %}
-                                <p>Administrateur</p>
-                                <a href="{{ path('admin') }}" class="btn btn-danger">Administration</a>
+                            {% if 'ROLE_ADMIN' in user.roles or 'ROLE_MANAGER' in user.roles %}
+                                <p>{% if 'ROLE_ADMIN' in user.roles %}Administrateur{% else %}Manager{% endif %}</p>
+                                <a href="{{ path('admin') }}" target="blank" class="btn btn-danger">Administration</a>
                             {% else %}
                                 <p>Client</p>
                             {% endif %}
