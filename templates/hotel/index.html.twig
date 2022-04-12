@@ -2,6 +2,9 @@
 
 {% block title %}Nos Hotels{% endblock %}
 
+{% block body_name %}hotel{% endblock %}
+
+
 {% block body %}
     <h1>Liste de nos hotels</h1>
     {% for hotel in hotels %}
@@ -9,6 +12,9 @@
             <div class="card-body">
                 <h5 class="card-title">{{ hotel.name }}</h5>
                 <p class="card-text">{{ hotel.description | raw }}</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{{ path('app_hotel', {slug: hotel.slug}) }}" class="btn btn-primary">Voir les suites</a>
+                </div>
             </div>
         </div>
     {% endfor %}
