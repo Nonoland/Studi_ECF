@@ -2,6 +2,8 @@
 
 {% block title %}Log in!{% endblock %}
 
+{% block body_name %}login{% endblock %}
+
 {% block body %}
     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
 
@@ -26,4 +28,7 @@
             Connexion
         </button>
     </form>
+    <hr>
+    <h2>Vous n'êtes pas encore inscrit ?</h2>
+    <a href="{{ path('app_register') }}" class="btn btn-primary">Inscription</a>
 {% endblock %}
