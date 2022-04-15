@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -70,6 +71,10 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .configureCssMinimizerPlugin((config) => {
+        config.minify = CssMinimizerPlugin.cssnanoMinify
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();
