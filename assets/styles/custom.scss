@@ -1,0 +1,108 @@
+$primary-color: #3b61dd;
+$secondary-color: #eba744;
+$black: #2d3436;
+
+@font-face {
+  font-family: 'Tostada-Regular';
+  src:url('/public/assets/font/Tostada-Regular.ttf.woff') format('woff'),
+  url('/public/assets/font/Tostada-Regular.ttf.svg#Tostada-Regular') format('svg'),
+  url('/public/assets/font/Tostada-Regular.ttf.eot'),
+  url('/public/assets/font/Tostada-Regular.ttf.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Jost', sans-serif;
+}
+
+nav {
+  border-radius: 0 0 7px 7px;
+
+  height: 95px;
+
+  .navbar-brand {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Tostada-Regular';
+
+    width: 15%;
+    text-align: center;
+    font-size: 1.75rem;
+  }
+
+  ul {
+    
+    li {
+      display: flex;
+      align-items: center;
+
+      a {
+        display: flex !important;
+        align-items: center !important;
+
+        font-size: 15px;
+        letter-spacing: 1px;
+
+        padding: 0 20px;
+
+        color: $black !important;
+      }
+    }
+  }
+
+  .container-fluid, .navbar-collapse, ul, li {
+    height: 95px;
+  }
+
+  i.bi {
+    font-size: 20px;
+    margin-right: 9px;
+
+    color: $black !important;
+  }
+}
+
+#home {
+  .cta-homepage {
+    background-image: url('http://localhost:8000/assets/img/panoramic_homepage.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    color: white;
+
+    padding: 3rem 0;
+
+    .row {
+      margin-top: 56px !important;
+      padding-top: 0 !important;
+    }
+  }
+}
+
+.btn {
+  border-radius: 50px;
+
+  letter-spacing: 2px;
+
+  font-weight: 400;
+
+  &:hover {
+    filter: brightness(120%);
+  }
+}
+
+.btn-primary {
+  background-color: $primary-color !important;
+  border-color: $primary-color !important;
+}
+
+.btn-secondary {
+  background-color: $secondary-color !important;
+  border-color: $secondary-color !important;
+
+  color: white !important;
+}

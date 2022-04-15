@@ -1,22 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hypnos - Bienvenue !{% endblock %}
 
 {% block body_name %}home{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/nolandartois/PhpstormProjects/studi/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/nolandartois/PhpstormProjects/studi/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container-fluid cta-homepage">
+        <div class="row px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">Trouver la suite de vos rêves<br>pour vos vacances</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">
+                    Avec nos 7 établissements aux 4 coins de l'hexagone, vous trouverez forcément une suite pour votre
+                    séjour.
+                </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-sm-center">
+                    <a href="#" class="btn btn-primary btn-lg px-4 me-md-2">Voir nos hotels</a>
+                    <a href="#" class="btn btn-secondary btn-lg px-4 me-md-2">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

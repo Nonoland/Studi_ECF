@@ -10,34 +10,37 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg">
+    <body id="{% block body_name %}{% endblock %}">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
             <div class="container-fluid">
-                <a href="/" class="navbar-brand">Hypnos</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a href="/" class="navbar-brand">hypnos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHypnos" aria-controls="navbarHypnos" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse justify-content-center bg-light" id="navbarHypnos">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="/hotels" class="nav-link">Hotels</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/qui-sommes-nous" class="nav-link">Qui sommes nous ?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/contact" class="nav-link">Contact</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="collapse navbar-collapse justify-content-end">
+                <div class="collapse navbar-collapse justify-content-end bg-light" id="navbarHypnos">
                     <ul class="navbar-nav">
                         {% if app.user %}
                             <li class="nav-item">
-                                <a href="/mon-compte" class="nav-link">Mon compte</a>
+                                <a href="/mon-compte" class="nav-link"><i class="bi bi-person"></i>Mon compte</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a href="/connexion" class="nav-link">Connexion</a>
+                                <a href="/connexion" class="btn btn-secondary">Connexion</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/inscription" class="nav-link">Inscription</a>
@@ -47,11 +50,29 @@
                 </div>
             </div>
         </nav>
-        <div class="container {% block body_name %}{% endblock %}">
-            {% block body %}
-            {% endblock %}
+
+        {% block body %}
+        {% endblock %}
+
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <p class="col-md-4 mb-0 text-muted">© 2022 HYPNOS</p>
+
+                <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+
+                <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Hotels</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Qui sommes nous ?</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact</a></li>
+                </ul>
+            </footer>
         </div>
-        {% block script_footer %}
+
+        {{ encore_entry_script_tags('app') }}
+
+        {% block javascripts %}
         {% endblock %}
     </body>
 </html>

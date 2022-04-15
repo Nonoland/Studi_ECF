@@ -18,3 +18,6 @@ yarn-error.log
 php-cs-fixer-v3.phar
 /migrations/
 /.idea/
+.idea/studi.iml
+.idea/php.xml
+.idea/i18nally.json

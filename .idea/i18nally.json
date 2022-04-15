@@ -39,7 +39,7 @@
     } ]
   } ],
   "ignores" : {
-    "valuesInProject" : [ "use strict" ],
+    "valuesInProject" : [ "use strict", "Hotel" ],
     "valuesInFile" : { },
     "filesInProject" : [ ],
     "unignoredFunctionNames" : [ ],
