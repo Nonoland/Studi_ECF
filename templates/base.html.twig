@@ -13,7 +13,7 @@
     </head>
     <body id="{% block body_name %}{% endblock %}">
 
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
             <div class="container-fluid">
                 <a href="/" class="navbar-brand">hypnos</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHypnos" aria-controls="navbarHypnos" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,9 +30,21 @@
                         <li class="nav-item">
                             <a href="/contact" class="nav-link">Contact</a>
                         </li>
+                        {% if app.user %}
+                            <li class="nav-item d-lg-none d-xl-none d-xxl-none">
+                                <a href="/mon-compte" class="nav-link"><i class="bi bi-person"></i>Mon compte</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item d-lg-none d-xl-none d-xxl-none">
+                                <a href="/connexion" class="nav-link">Connexion</a>
+                            </li>
+                            <li class="nav-item d-lg-none d-xl-none d-xxl-none">
+                                <a href="/inscription" class="nav-link">Inscription</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
-                <div class="collapse navbar-collapse justify-content-end bg-light" id="navbarHypnos">
+                <div class="collapse navbar-collapse justify-content-end bg-light d-md-none d-lg-block">
                     <ul class="navbar-nav">
                         {% if app.user %}
                             <li class="nav-item">
@@ -51,8 +63,10 @@
             </div>
         </nav>
 
-        {% block body %}
-        {% endblock %}
+        <div class="wrapper">
+            {% block body %}
+            {% endblock %}
+        </div>
 
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
