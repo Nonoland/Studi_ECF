@@ -130,11 +130,29 @@ nav {
       width: 33.3333%;
       flex: none;
     }
+
+    .card-footer  {
+
+    }
   }
 }
 
 #login {
 
+}
+
+#contact {
+  h1 {
+    margin-bottom: 5rem;
+  }
+}
+
+.card {
+  .card-footer {
+    background-color: white;
+
+    border-top: none;
+  }
 }
 
 .btn {

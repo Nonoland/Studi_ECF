@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hypnos - Nous contacter{% endblock %}
+
+{% block body_name %}contact{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Formulaire de contact</h1>
+    <div class="row">
+        <div class="col-4">
+            <h2>Une question ? Une demande ?</h2>
+            <p>Pour toute demande ou question concernant notre service, merci de bien vouloir utiliser le formulaire ci-contre. Un conseiller vous contactera dans les meilleurs délais.</p>
+        </div>
+        <div class="col-8">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {{ form(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

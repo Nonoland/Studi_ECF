@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Contact;
 use App\Entity\Hotel;
 use App\Entity\Reservation;
 use App\Entity\Suite;
@@ -39,6 +40,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
         yield MenuItem::section('Gestion client');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Messages', 'fas fa-comment', Contact::class);
         yield MenuItem::section('Gestion Hôtellerie');
         yield MenuItem::linkToCrud('Hotels', 'fas fa-hotel', Hotel::class);
         yield MenuItem::linkToCrud('Suites', 'fas fa-bed', Suite::class);
