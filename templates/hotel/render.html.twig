@@ -6,6 +6,10 @@
 
 
 {% block body %}
+    {% if suites|length == 0 %}
+        <h2 class="text-center">Il n'y aucune suite de disponible pour le moment...</h2>
+    {% endif %}
+
     {% for suite in suites %}
         <div class="card">
             <div class="card-body">
