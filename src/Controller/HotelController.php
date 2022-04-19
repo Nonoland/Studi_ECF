@@ -76,7 +76,7 @@ class HotelController extends AbstractController
             $difference = $date_start->diff($date_end);
 
             if ($difference->d < 3) {
-                $warnings[] = 'Votre durée de séjour doit être supérieur au moins de 3 jours.';
+                $warnings[] = 'Votre durée de séjour doit être supérieur à au moins 3 jours.';
             } else {
                 $reservation->setSuite($suite);
                 $reservation->setUser($this->getUser());
@@ -84,7 +84,7 @@ class HotelController extends AbstractController
                 $this->entityManager->persist($reservation);
                 $this->entityManager->flush();
 
-                return $this->redirectToRoute('app_reservation_success', ['id' => $reservation->getId()]);
+                return $this->redirectToRoute('app_reservation_success');
             }
         }
 
@@ -96,10 +96,9 @@ class HotelController extends AbstractController
         ]);
     }
 
-    #[Route('/hotel/reservation/success/{id}', name: 'app_reservation_success')]
-    public function reservationSuccess(string $id)
+    #[Route('/hotel/reservation/success/', name: 'app_reservation_success')]
+    public function reservationSuccess(Request $request): Response
     {
-
         return $this->render('hotel/reservation_success.html.twig');
     }
 }
