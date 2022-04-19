@@ -1,0 +1,11 @@
+{% if entity is not null %}
+    <div class="form-widget">
+        <div class="form-control">
+            {% for value in entity.instance.attachments %}
+                <div id="easyadmin-lightbox-{{ value.id }}" class="easyadmin-lightbox">
+                    <img src="/images/{{ value.image }}" style="max-width: 25%">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

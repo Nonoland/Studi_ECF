@@ -5,13 +5,15 @@
 {% block body_name %}suites{% endblock %}
 
 {% block body %}
-    <h1>Liste de nos suites</h1>
-    {% for suite in suites %}
-        <div class="card mt-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ suite.name }}</h5>
-                <p class="card-text">{{ suite.description | raw }}</p>
+    <div class="container">
+        <h1>Liste de nos suites</h1>
+        {% for suite in suites %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ suite.name }}</h5>
+                    <p class="card-text">{{ suite.description | raw }}</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}

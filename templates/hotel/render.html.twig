@@ -6,20 +6,31 @@
 
 
 {% block body %}
-    {% if suites|length == 0 %}
-        <h2 class="text-center">Il n'y aucune suite de disponible pour le moment...</h2>
-    {% endif %}
+    <div class="container">
+        {% if suites|length == 0 %}
+            <h2 class="text-center">Il n'y aucune suite de disponible pour le moment...</h2>
+        {% endif %}
 
-    {% for suite in suites %}
-        <div class="card">
-            <div class="card-body">
-                <h5>{{ suite.name }}</h5>
-                <p>{{ suite.description | raw }}</p>
-                <div class="d-flex justify-content-between">
-                    <p class="price">{{ suite.price }} €</p>
-                    <a href="{{ path('app_reservation', {slug_hotel: suite.hotel.slug, slug_suite: suite.slug}) }}" class="btn btn-primary">Réserver</a>
+        {% for suite in suites %}
+            <div class="card">
+                <div class="card-body">
+                    <h5>{{ suite.name }}</h5>
+                    {% if suite.attachments|length > 0 %}
+                        <div class="row">
+                            {% for image in suite.attachments %}
+                                <div class="col-md-4 mt-3 col-lg-3">
+                                    <img src="/images/{{ image.image }}" alt="{{ image.image }}" class="img-fluid">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <p>{{ suite.description | raw }}</p>
+                    <div class="d-flex justify-content-between">
+                        <p class="price">{{ suite.price }} €</p>
+                        <a href="{{ path('app_reservation', {slug_hotel: suite.hotel.slug, slug_suite: suite.slug}) }}" class="btn btn-primary">Réserver</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}

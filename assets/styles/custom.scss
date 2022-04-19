@@ -134,6 +134,8 @@ nav {
 
   .hotels {
     justify-content: center;
+    flex-direction: row;
+    display: flex;
 
     .card {
       width: 33.3333%;

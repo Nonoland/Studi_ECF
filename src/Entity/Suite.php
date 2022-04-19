@@ -6,8 +6,10 @@ use App\Repository\SuiteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SuiteRepository::class)]
+#[Vich\Uploadable]
 class Suite
 {
     #[ORM\Id]
@@ -33,8 +35,8 @@ class Suite
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
-    #[ORM\Embedded(class: 'Vich\UploaderBundle\Entity\File')]
-    private $highlightedImage;
+    #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Attachment::class, cascade: ['persist'])]
+    private $attachments;
 
     #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Reservation::class)]
     private $reservations;
@@ -42,6 +44,7 @@ class Suite
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
+        $this->attachments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +148,36 @@ class Suite
             // set the owning side to null (unless already changed)
             if ($reservation->getSuite() === $this) {
                 $reservation->setSuite(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Attachment>
+     */
+    public function getAttachments(): Collection
+    {
+        return $this->attachments;
+    }
+
+    public function addAttachment(Attachment $attachment): self
+    {
+        if (!$this->attachments->contains($attachment)) {
+            $this->attachments[] = $attachment;
+            $attachment->setSuite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAttachment(Attachment $attachment): self
+    {
+        if ($this->attachments->contains($attachment)) {
+            $this->attachments->removeElement($attachment);
+            if ($attachment->getSuite() === $this) {
+                $attachment->setSuite(null);
             }
         }
 

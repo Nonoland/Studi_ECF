@@ -21,3 +21,4 @@ php-cs-fixer-v3.phar
 .idea/studi.iml
 .idea/php.xml
 .idea/i18nally.json
+/public/images/
