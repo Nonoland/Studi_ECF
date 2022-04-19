@@ -6,16 +6,22 @@
 
 
 {% block body %}
-    <h1>Liste de nos hotels</h1>
-    {% for hotel in hotels %}
-        <div class="card mt-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ hotel.name }}</h5>
-                <p class="card-text">{{ hotel.description | raw }}</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{{ path('app_hotel', {slug: hotel.slug}) }}" class="btn btn-primary">Voir les suites</a>
+    <div class="container">
+        <h1 class="text-center">Nos hotels</h1>
+        <div class="card-group">
+            {% for hotel in hotels %}
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ hotel.name }}</h5>
+                        <p class="card-text">{{ hotel.description | raw }}</p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('app_hotel', {slug: hotel.slug}) }}" class="btn btn-primary">Voir les suites</a>
+                    </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
 {% endblock %}
