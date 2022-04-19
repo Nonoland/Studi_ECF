@@ -14,8 +14,8 @@ class ReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $now = new \DateTime();
-        $later = new \DateTime();
+        $now = new \DateTime('TOMORROW');
+        $later = new \DateTime('TOMORROW+1');
         $later->add(new \DateInterval('P3D'));
 
         $builder

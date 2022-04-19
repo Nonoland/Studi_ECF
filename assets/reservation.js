@@ -19,17 +19,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             let diff = (reservation_date_end - reservation_date_start) / 86400000;
 
-            if (diff >= 3) {
-                submit_button.disabled = false;
-            } else {
-                submit_button.disabled = true;
-            }
+            submit_button.disabled = diff < 3;
 
             let price = Math.round(diff) * suite_price;
             price_span.textContent = price + '€';
         });
 
-        submit_button.disabled = true;
         submit_button.addEventListener('click', (event) => {
             let reservation_date_start = new Date(reservation_date_start_year.value, reservation_date_start_month.value-1, reservation_date_start_day.value);
             let reservation_date_end = new Date(reservation_date_end_year.value, reservation_date_end_month.value-1, reservation_date_end_day.value);
@@ -50,14 +45,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
 
-
-
     }
 });
-
-async function sendAjaxRequest(params, done, fail) {
-    await $.ajax({
-        url: 'http://localhost:8080/ajax/suite/'+params,
-        method: 'GET'
-    }).done(done).fail(fail);
-}
