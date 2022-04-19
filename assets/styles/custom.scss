@@ -14,6 +14,12 @@ $black: #2d3436;
 
 body {
   font-family: 'Jost', sans-serif;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 100vh;
 }
 
 nav {
@@ -82,6 +88,9 @@ nav {
 
 .wrapper {
   margin-top: 75px;
+  margin-bottom: 121px;
+
+  flex: 1;
 }
 
 #home {
