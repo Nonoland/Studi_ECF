@@ -38,6 +38,8 @@ class SuiteCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            ImageField::new('thumbnail')->setUploadDir('/public/images/thumbnails/')->onlyOnForms(),
+            ImageField::new('thumbnail')->setBasePath('/images/thumbnails')->onlyOnDetail(),
             TextField::new('name', 'Nom'),
             TextEditorField::new('description', 'Description'),
             NumberField::new('price', 'Prix'),

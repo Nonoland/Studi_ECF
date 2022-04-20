@@ -6,6 +6,7 @@ use App\Repository\SuiteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SuiteRepository::class)]
@@ -34,6 +35,9 @@ class Suite
 
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $thumbnail;
 
     #[ORM\OneToMany(mappedBy: 'suite', targetEntity: Attachment::class, cascade: ['persist'])]
     private $attachments;
@@ -182,6 +186,22 @@ class Suite
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThumbnail(): mixed
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param mixed $thumbnail
+     */
+    public function setThumbnail(mixed $thumbnail): void
+    {
+        $this->thumbnail = $thumbnail;
     }
 
     public function __toString()
