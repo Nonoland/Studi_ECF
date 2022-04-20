@@ -3,7 +3,9 @@ create table contact
     id int auto_increment primary key,
     message longtext not null,
     sender varchar(255) not null,
-    subject varchar(255) not null
+    subject varchar(255) not null,
+    firstname varchar(255) not null,
+    lastname varchar(255) not null
 ) collate = utf8mb4_unicode_ci;
 
 create table hotel
