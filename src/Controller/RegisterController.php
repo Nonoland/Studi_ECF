@@ -45,7 +45,7 @@ class RegisterController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $this->redirectToRoute('app_register_success');
+            return $this->redirectToRoute('app_register_success');
         }
 
         return $this->render('register/index.html.twig', [
@@ -56,6 +56,6 @@ class RegisterController extends AbstractController
     #[Route('/inscription/success', name: 'app_register_success')]
     public function registerSuccess(Request $request): Response
     {
-        return $this->render('register/register_success.index.twig');
+        return $this->render('register/register_success.html.twig');
     }
 }
