@@ -22,6 +22,12 @@ class Contact
     #[ORM\Column(type: 'string', length: 255)]
     private $subject;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $lastname;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $firstname;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,5 +67,37 @@ class Contact
         $this->subject = $subject;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname($lastname): void
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname($firstname): void
+    {
+        $this->firstname = $firstname;
     }
 }
